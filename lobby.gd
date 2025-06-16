@@ -84,8 +84,8 @@ func _on_player_connected(id):
 	print(id, " Conneted")
 
 @rpc
-func ping(caller_name: String):
-	Log.log("PING: " + caller_name)
+func ping():
+	Log.log("PING")
 
 
 @rpc("any_peer", "reliable")
