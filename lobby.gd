@@ -83,6 +83,10 @@ func _on_player_connected(id):
 	_register_player.rpc_id(id, player_info)
 	print(id, " Conneted")
 
+@rpc("any_peer", "call_local")
+func ping(caller_name: String):
+	Log.log("PING: " + caller_name)
+
 
 @rpc("any_peer", "reliable")
 func _register_player(new_player_info):
