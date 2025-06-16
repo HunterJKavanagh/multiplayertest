@@ -19,7 +19,7 @@ var players = {}
 # before the connection is made. It will be passed to every other peer.
 # For example, the value of "name" can be set to something the player
 # entered in a UI scene.
-var player_info = {"name": "pc"}
+var player_info = {"name": "NAME"}
 
 var players_loaded = 0
 
@@ -81,7 +81,7 @@ func player_loaded():
 # This allows transfer of all desired data for each player, not only the unique ID.
 func _on_player_connected(id):
 	_register_player.rpc_id(id, player_info)
-	print(players[id]["name"], " Conneted")
+	print(id, " Conneted")
 
 
 @rpc("any_peer", "reliable")
@@ -93,9 +93,10 @@ func _register_player(new_player_info):
 
 
 func _on_player_disconnected(id):
+	Log.log(players[id]["name"] + " Disconnected")
 	players.erase(id)
 	player_disconnected.emit(id)
-	Log.log(players[id]["name"] + " Disconnected")
+	
 
 
 func _on_connected_ok():

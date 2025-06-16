@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkbpv5e5anxag"]
+[gd_scene load_steps=5 format=3 uid="uid://bkbpv5e5anxag"]
 
 [ext_resource type="Script" uid="uid://ck251im4r6nmr" path="res://game.gd" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://c6cilxvjuq62p" path="res://button.gd" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://d3flmp0he60bb" path="res://button_2.gd" id="2_fc0e3"]
 [ext_resource type="Script" uid="uid://cji3n301clr1k" path="res://log_lable.gd" id="3_feb5d"]
 
 [node name="Game" type="Node2D"]
@@ -48,14 +49,23 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 text = "Join
 "
 script = ExtResource("2_e2o6t")
 
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Create Game"
+script = ExtResource("2_fc0e3")
+
 [node name="LogLable" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 script = ExtResource("3_feb5d")
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="CanvasLayer/VBoxContainer/Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer3/Button" to="CanvasLayer/VBoxContainer/HBoxContainer3/Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/HBoxContainer3/Button2" to="CanvasLayer/VBoxContainer/HBoxContainer3/Button2" method="_on_pressed"]
