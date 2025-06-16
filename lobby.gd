@@ -19,7 +19,7 @@ var players = {}
 # before the connection is made. It will be passed to every other peer.
 # For example, the value of "name" can be set to something the player
 # entered in a UI scene.
-var player_info = {"name": "Name"}
+var player_info = {"name": "pc"}
 
 var players_loaded = 0
 
@@ -41,6 +41,7 @@ func join_game(address = ""):
 	if error:
 		return error
 	multiplayer.multiplayer_peer = peer
+	print("Joined Game")
 
 
 func create_game():
@@ -52,6 +53,7 @@ func create_game():
 
 	players[1] = player_info
 	player_connected.emit(1, player_info)
+	print("Game Created")
 
 
 func remove_multiplayer_peer():
@@ -80,6 +82,7 @@ func player_loaded():
 # This allows transfer of all desired data for each player, not only the unique ID.
 func _on_player_connected(id):
 	_register_player.rpc_id(id, player_info)
+	print(players[id]["name"], " Conneted")
 
 
 @rpc("any_peer", "reliable")
