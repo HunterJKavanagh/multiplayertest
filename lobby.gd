@@ -41,7 +41,6 @@ func join_game(address = ""):
 	if error:
 		return error
 	multiplayer.multiplayer_peer = peer
-	print("Joined Game")
 
 
 func create_game():
@@ -90,24 +89,29 @@ func _register_player(new_player_info):
 	var new_player_id = multiplayer.get_remote_sender_id()
 	players[new_player_id] = new_player_info
 	player_connected.emit(new_player_id, new_player_info)
+	Log.log(players[new_player_id]["name"] + " Registered")
 
 
 func _on_player_disconnected(id):
 	players.erase(id)
 	player_disconnected.emit(id)
+	Log.log(players[id]["name"] + " Disconnected")
 
 
 func _on_connected_ok():
 	var peer_id = multiplayer.get_unique_id()
 	players[peer_id] = player_info
 	player_connected.emit(peer_id, player_info)
+	Log.log(player_info["name"] + " Conneted")
 
 
 func _on_connected_fail():
 	multiplayer.multiplayer_peer = null
+	Log.log("Peer Failed to Conneted")
 
 
 func _on_server_disconnected():
 	multiplayer.multiplayer_peer = null
 	players.clear()
 	server_disconnected.emit()
+	Log.log("Server Disconnected")

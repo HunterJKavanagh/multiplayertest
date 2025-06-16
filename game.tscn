@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkbpv5e5anxag"]
+[gd_scene load_steps=4 format=3 uid="uid://bkbpv5e5anxag"]
 
 [ext_resource type="Script" uid="uid://ck251im4r6nmr" path="res://game.gd" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://c6cilxvjuq62p" path="res://button.gd" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://cji3n301clr1k" path="res://log_lable.gd" id="3_feb5d"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_80nbo")
@@ -53,7 +54,8 @@ text = "Join
 "
 script = ExtResource("2_e2o6t")
 
-[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+[node name="LogLable" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
+script = ExtResource("3_feb5d")
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="CanvasLayer/VBoxContainer/Button" method="_on_pressed"]
